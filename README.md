@@ -1,8 +1,17 @@
 # phd-thesis-latex
 
+## Description
+
 Provides a package `mitchell-thesis.sty`, which can be used by downloading the file and placing it next to your `main.tex` document. 
 From there just `usepackage{mitchell-thesis}` as usual. 
 The package takes one optional argument, `fancy`, which enables blue coloring of hyperlinks and sectioning numbers, and modifies the font of chapter/section/subsection/subsubsection titles.
+This heading style was inspired by [latex-mimosis](https://github.com/Pseudomanifold/latex-mimosis).
+
+## Sample
+
+My thesis uses the `fancy` option ([view here](example-compressed.pdf))
+
+## Caveats
 
 The package makes some assumptions about font.
 It uses the `notomath` package, which enables the Noto font for serif, sans-serif, math, etc.
@@ -13,6 +22,8 @@ If a different font is enabled after importing this package, these commands won'
 
 The package was also designed to be used with the [ut-thesis class](https://github.com/jessexknight/ut-thesis) which is provided here with minor edits.
 However, it should work with almost any LaTeX class, especially those based on `book`.
+
+## Commands
 
 The following commands are provided. These can be used as templates to create similar commands that utilize Noto font capabilities.
 
