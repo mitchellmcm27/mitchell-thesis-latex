@@ -9,7 +9,8 @@ This heading style was inspired by [latex-mimosis](https://github.com/Pseudomani
 
 ## Sample
 
-My thesis uses the `fancy` option ([view here](example-compressed.pdf))
+My thesis uses the `fancy` option ([view here](example-compressed.pdf)).
+See [example.tex](example.tex) for how this file was created.
 
 ## Caveats
 
