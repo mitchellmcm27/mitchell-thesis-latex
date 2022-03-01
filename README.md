@@ -11,7 +11,7 @@ Using LGR mode, I defined nice-looking upright symbols for microns (μ) and sigm
 Using these, I defined a few units, e.g., `\uWpercubicm`, which prints the units for microwatts per cubic meter.
 If a different font is enabled after importing this package, these commands won't work anymore.
 
-The package was also designed to be used with the class `ut-thesis.cls` which is provided here.
+The package was also designed to be used with the [ut-thesis class](https://github.com/jessexknight/ut-thesis) which is provided here with minor edits.
 However, it should work with almost any LaTeX class, especially those based on `book`.
 
 The following commands are provided. These can be used as templates to create similar commands that utilize Noto font capabilities.
