@@ -1,0 +1,236 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mitchell-thesis}[2022/02/25]
+
+\RequirePackage{amsmath}
+\RequirePackage{gensymb}
+\RequirePackage{tabularx}
+\RequirePackage{multirow, makecell}
+\RequirePackage{subcaption}
+%\RequirePackage{subfig} % incompatible with subcaption
+
+% Font choice - Noto Serif, Noto Sans, Noto Math
+\RequirePackage[osf,pf]{notomath}
+
+\RequirePackage{textcomp}
+\RequirePackage[all]{nowidow}
+\RequirePackage[addbang]{fewerfloatpages}
+
+\RequirePackage[
+	activate={true,nocompatibility},
+	final,
+	tracking=true,
+	kerning=true,
+	spacing=true,
+	factor=1100,
+	stretch=10,
+	shrink=10
+]{microtype}
+
+% multiple fontencs are required for Noto to use the LGR (greek letters) mode
+% otherwise latex will force you into math mode when it detects a greek letter
+\RequirePackage[LGR,T2A,T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{sectsty} 
+\RequirePackage{titling}
+
+\RequirePackage[american]{babel}
+\RequirePackage{csquotes}
+\RequirePackage[backend=biber,
+			doi,
+			hyperref,
+			citestyle=apa,
+			bibstyle=apa,
+			maxcitenames=2,
+			maxbibnames=99,
+			isbn=false,
+			giveninits=true,
+			dashed=false,
+			uniquename=false,
+			uniquelist=false
+			]{biblatex}
+\RequirePackage{bibentry}
+\RequirePackage[pdftex]{graphicx}
+\RequirePackage{booktabs}
+\RequirePackage{dcolumn}
+\RequirePackage{float}
+\RequirePackage[noblocks]{authblk} 
+\RequirePackage{pdfpages}
+\RequirePackage{caption}
+\RequirePackage{url}
+\RequirePackage{hyperref}
+\RequirePackage[noabbrev,capitalise]{cleveref}
+\RequirePackage{xcolor}
+\RequirePackage{titlesec}
+\RequirePackage[most]{tcolorbox}
+%\RequirePackage{tocloft}
+\RequirePackage{enumitem}
+
+% This formats captions that are separated out from their figure
+\DeclareCaptionLabelFormat{adja-page}{\hrulefill\\#1 #2 (previous page)}
+
+\DeclareLanguageMapping{american}{american-apa}
+
+\newlist{questions}{enumerate}{10}
+\setlist[questions]{
+	label=Q\arabic*.,
+	ref=\arabic*,
+	labelindent = \parindent,
+	leftmargin = 2\parindent,
+	labelsep = *
+}
+\crefname{questionsi}{question}{questions}
+\Crefname{questionsi}{Question}{Questions}
+
+% most of these aren't used
+\definecolor{dark-red}{HTML}{AA665F} % #AA665F
+\definecolor{dark-green}{HTML}{409F60} % #409F60
+\definecolor{dark-blue}{HTML}{5070BB} % #5070BB
+\definecolor{medium-blue}{HTML}{3070ED} % #3070ED
+\definecolor{dark-gray}{HTML}{7B7D80} % #7B7D80
+\definecolor{theyellow}{HTML}{FBAD1A} % #FBAD1A
+
+\definecolor{thered}    {rgb} {0.65,0.04,0.07}
+\definecolor{thegreen}  {rgb} {0.06,0.44,0.08}
+\definecolor{theblue}   {rgb} {0.02,0.04,0.48}
+\definecolor{ltgray}{gray}{0.6}
+\definecolor{sectioning}{gray}{0.4}
+\definecolor{thegrey}   {gray}{0.5}
+\definecolor{theframe}  {gray}{0.75}
+\definecolor{theshade}  {gray}{0.94}
+
+\AtEveryBibitem{% Clean up the bibtex rather than editing it
+\clearfield{date}
+\clearfield{eprint}
+\clearfield{month}
+\clearfield{annote}
+\clearfield{annotation}
+\clearfield{keywords}
+\clearfield{file}
+\clearfield{abstract}
+\ifentrytype{book}{}{\ifentrytype{incollection}{}%
+	{%
+		\clearlist{publisher}
+		\clearname{editor}
+		\clearfield{isbn}
+		\clearfield{issn}
+		\clearlist{address}
+		\clearfield{series}
+	}%
+}%
+\ifentrytype{misc}{}
+	{% Remove url except misc
+		\clearfield{url}
+	}%
+}%
+
+\urlstyle{same}
+
+% depending on font, tildes (~) don't always look nice
+% Noto has a good ascii tilde, so
+\newcommand{\midtilde}{\textasciitilde}
+% but for some fonts we need to lower the ascii tilde down
+%\newcommand{\midtilde}{\raisebox{-0.25\baselineskip}{\textasciitilde}}
+
+% footnotes are only used on chapter titles to note publication status
+% as such, make them all be symbols instead of numbers
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+% no need to change the footnote mark when using symbols
+\newcommand{\fnmark}{\footnotemark}
+%if using numbers for chapter-title-footnote-marks, the following looks nicer
+%\newcommand{\fnmark}{\raisebox{.25\baselineskip}{\large\footnotemark}}
+
+
+% make a box so that graphics can utilize smaller page margins
+\newlength{\maxwidth}
+\setlength{\maxwidth}{6.5in}
+\newcommand{\largegraphics}[2][width=\maxwidth]{\centering\noindent\makebox[\textwidth]{\includegraphics[#1]{#2}}}
+
+% most tables have a header with 2 combined rows
+% hrow is for cells that only have 1 line of text
+\newcommand{\hrow}[1]{\multicolumn{1}{c}{\multirow{2}{*}{#1}}}
+
+% make subfigure labels out of a figure with a single graphic
+\newcommand{\labelphantom}[1]{%
+  \parbox{0pt}{\phantomsubcaption\label{#1}}%
+}
+
+% Assume Noto font here
+\newcommand{\muser}{% mu symbol
+	{\notoseriflgr m}%
+}
+\newcommand{\sigmaser}{{\notoseriflgr s\noboundary}} % sigma symbol
+
+% define some SI units etc.
+\newcommand{\uWpercubicm}{\muser W\,m$^{-3}$}
+\newcommand{\mWpersquarem}{mW\,${^-2}$}
+\newcommand{\um}{\muser m}
+\newcommand{\kgpercubicm}{kg\,m$^{-3}$}
+\newcommand{\JperK}{J\,K$^{-1}$}
+\newcommand{\WpermperK}{W\,m$^{-1}$\,K$^{-1}$}
+\newcommand{\kmsquare}{km$^{2}$}
+\newcommand{\kmcubed}{km$^{3}$}
+\newcommand{\persec}{s$^{-1}$}
+\newcommand{\ArAr}{$^{40}$Ar/$^{39}$Ar}
+\newcommand{\degCperkm}{\degree{}C\,km$^{-1}$}
+\newcommand{\degCperMa}{\degree{}C\,Ma$^{-1}$}
+\newcommand{\degC}{\degree{}C}
+\newcommand{\kmperMa}{km\,Ma$^{-1}$}
+\newcommand{\mmperyr}{mm\,yr$^{-1}$}
+\newcommand{\cmperyr}{cm\,yr$^{-1}$}
+\newcommand{\atomic}[2]{$^{#1}$#2}
+\newcommand{\PbU}{\atomic{206}{Pb}/\atomic{238}{U}}
+\newcommand{\PbPb}{\atomic{206}{Pb}/\atomic{207}{Pb}}
+\newcommand{\RayleighTaylor}{Rayleigh--Taylor}
+\newcommand{\RT}{R--T}
+
+\newcommand{\sample}[1]{#1}
+\newcommand{\Location}[1]{\color{dark-blue}Location #1}
+
+\hypersetup{ 
+	colorlinks=false, 
+	pdfborder={0 0 0},
+	linktoc=page,
+}
+\captionsetup{font=small}
+
+% chapter command that takes 2 args {title}{subtitle}
+\newcommand{\Chapter}[2]{\chapter[#1]{#1\\[0ex]\Large\mdseries#2}}
+
+\DeclareOption{fancy}{
+
+	\hypersetup{ 
+		colorlinks=true, 
+		linkcolor={medium-blue},
+		citecolor={medium-blue}, 
+		urlcolor={medium-blue},
+		pdfborder={0 0 0},
+		linktoc=page,
+	}
+	\captionsetup{font=small}
+	
+	\chapternumberfont{\color{medium-blue}}
+	\chaptertitlefont{\color{black}}
+	
+	\titleformat{\chapter}[hang] 
+	{\normalfont\fontsize{42}{30}\selectfont\mdseries}{\color{medium-blue}{\thechapter}}{0.5em}{\normalsize\LARGE\bfseries}
+	
+	\titleformat{\section}{\raggedright\Large\mdseries}{\color{medium-blue}{\thesection}}{1em}{}
+	\titleformat{\subsection}{\raggedright\large}{\color{medium-blue}{\thesubsection}}{1em}{}
+	\titleformat{\subsubsection}[runin]{\normalfont\bfseries}{\thesubsubsection}{0em}{}[.\quad]
+
+	%\captionsetup{labelfont={color=sectioning,sf,bf},labelsep=quad}
+
+	%\chapterfont{\sffamily\Huge\bfseries\color{ltgray}}
+	%\chaptertitlefont{\raggedright\sffamily\huge\bfseries\color{sectioning}}
+	%\chapternumberfont{\raggedright\sffamily\Huge\bfseries\color{ltgray}}
+	%\sectionfont{\raggedright\sffamily\Large\bfseries\color{sectioning}} 
+	%\subsectionfont{\sffamily\large\bfseries\color{sectioning}}
+	%% make subsubsections run-in to the paragraph
+	%\titleformat{\subsubsection}[runin]{\normalfont\sffamily\bfseries\color{sectioning}}{\thesubsubsection}{0em}{}[\quad]
+	%%\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}       
+	%%\setlength{\cftbeforechapskip}{\baselineskip}
+	%%\setlength{\cftbeforefigskip}{\baselineskip}
+	%%\setlength{\cftbeforetabskip}{\baselineskip}
+	%%
+}%
+\ProcessOptions\relax
