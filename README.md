@@ -42,4 +42,3 @@ The following commands are provided. These can be used as templates to create si
 |`\PbPb`           |  Prints the correct formatting for 206Pb/207Pb                                                                                 |
 |`\RayleighTaylor` |  Ensures consistent formatting, `Rayleigh--Taylor`                                                                             |
 |`\RT`             |  Ensures consistent formatting, `R--T`                                                                                         |
-|------------------|-------------|
