@@ -18,10 +18,10 @@ The following commands are provided. These can be used as templates to create si
 
 | Command          |  Function   |
 |------------------|-------------|
-|`\labelphantom`   |  Allows creating subfigure labels out of a single `\includegraphics` command                                                   |
+|`\labelphantom{fig:1a}`   |  Allows creating subfigure labels out of a single `\includegraphics` command                                                   |
 |`\muser`          |  Upright μ, serif                                                                                                              |
 |`\sigmaser`       |  Upright σ, serif                                                                                                              |
-|`\hrow`           |  Creates a single-column, two-row table cell with text centered horizontally and vertically                                    |
+|`\hrow{Text}`           |  Creates a single-column, two-row table cell with text centered horizontally and vertically                                    |
 |`\largegraphics`  |  Allows graphics to take up 6.5 inches of page width, running past narrower margins. Drop-in replacement for `\includegraphics`|
 |`\midtilde`       |  Creates a nice looking `~` with the Noto font. Just calls `\textasciitilde`. Other fonts may require changing this command.   |
 |`\uWpercubicm`    |  Prints unit for microwatts per cubic meter                                                                                    |
