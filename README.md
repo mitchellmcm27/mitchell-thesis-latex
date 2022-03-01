@@ -13,7 +13,6 @@ If a different font is enabled after importing this package, these commands won'
 
 The following commands are provided. These can be used as templates to create similar commands that utilize Noto font capabilities.
 
-|------------------|-------------|
 | Command          |  Function   |
 |------------------|-------------|
 |`\labelphantom`   |  Allows creating subfigure labels out of a single `\includegraphics` command                                                   |
