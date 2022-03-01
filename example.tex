@@ -1,0 +1,106 @@
+\documentclass[11pt,fleqn,openany]{ut-thesis}
+% the degree command from ut-thesis clashes with the gensymb package
+\let\thesisdegree\degree  % Store \degree in \thesisdegree
+\let\degree\relax
+
+% some package redefines maketitle after this, breaking the ut-thesis command
+% so we rename and and release the maketitle command
+\let\makethesistitle\maketitle 
+\let\maketitle\relax
+
+\usepackage[fancy]{mitchell-thesis}
+
+\addbibresource{somelibrary.bib}
+
+% options for ut-thesis
+\author{Mitchell McMillan}
+\gradyear{2022}
+\thesisdegree{Doctor of Philosophy}
+\department{Earth Sciences}
+\title{Construction of Orogenic Plateaus: Geomorphology and Geodynamics of the Puna Plateau, Central Andes}
+
+\begin{document}
+
+\frontmatter
+\makethesistitle
+\begin{abstract}
+	\input{chapters/abstract/text.tex}
+\end{abstract}
+
+\begin{acknowledgements}
+\input{frontmatter/acknowledgements.tex}
+\end{acknowledgements}
+
+\microtypesetup{protrusion=false}
+\tableofcontents
+\listoffigures
+\listoftables
+\microtypesetup{protrusion=true}
+
+\mainmatter
+
+\begin{refsection}
+	\chapter{Introduction}\label{ch:intro}
+	\input{chapters/introduction/text.tex}
+	\printbibliography[heading=subbibintoc]
+\end{refsection}
+
+\begin{refsection}
+	\Chapter{Large-scale Cenozoic wind erosion \\in the Puna Plateau}{The Salina del Fraile Depression\fnmark}\label{ch:wind}
+	\footnotetext{%
+		This chapter has been published in the \emph{Journal of Geophysical Research: Earth Surface}.\\
+		Citation: \fullcite{McMillan2020}.\\
+		Supplementary materials are available online (\url{https://doi.org/10.1029/2020JF005682}).}
+	\input{chapters/wind/text.tex}
+	\printbibliography[heading=subbibintoc]
+\end{refsection}
+
+\begin{refsection}
+	\Chapter{Eocene to Quaternary deformation\\of the Southern Puna Plateau}{Thermochronology, geochronology, and  structural geology of an Andean hinterland basin (NW Argentina)\fnmark}\label{ch:thermochron}
+	\footnotetext{%
+		This chapter is under review in \emph{Tectonics}.\\
+		Citation: \fullcite{McMillan2022c}.\\
+		Supplementary material is available in \cref{ch:s3}.}
+	\input{chapters/thermochron/text.tex}
+	\printbibliography[heading=subbibintoc]
+\end{refsection}
+
+\begin{refsection}
+	\Chapter{Two styles of lithospheric dripping}{Synthesizing gravitational instability models, \\continental tectonics, and geologic observations\fnmark}\label{ch:drips}
+	\footnotetext{%
+		This chapter has been prepared for submission to \emph{Geochemistry, Geophysics, Geosystems}.\\
+		Citation: \fullcite{McMillan2022b}.\\
+		Supplementary material is available in \cref{ch:s4}.}
+	\input{chapters/drips/text.tex}
+	\printbibliography[heading=subbibintoc]
+\end{refsection}
+
+\begin{refsection}
+	\Chapter{Geodynamics of continental back-arcs}{Lithospheric foundering under a weak crust \\in the Central Andes\fnmark}\label{ch:model}
+	\footnotetext{%
+		This chapter has been prepared for submission to \emph{Geosphere}.\\
+		Citation: \fullcite{McMillan2022a}.}
+	\input{chapters/model/text.tex}
+	\printbibliography[heading=subbibintoc]
+\end{refsection}
+
+\begin{refsection}
+	\chapter{Conclusions}
+	\input{chapters/conclusions/text.tex}
+	\printbibliography[heading=subbibintoc]
+\end{refsection}
+
+\appendix
+
+\chapter{Supporting information for Chapter 3}\label{ch:s3}
+Tables, data, etc.
+\clearpage
+
+
+\chapter{Supporting information for Chapter 4}\label{ch:s4}
+Tables, data, etc.
+\clearpage
+
+\backmatter
+
+\end{document}
